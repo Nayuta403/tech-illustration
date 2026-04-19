@@ -1,5 +1,7 @@
 # tech-illustration
 
+[English](README.md) · [中文](README_zh.md)
+
 > A Claude [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills) that generates multi-style technical illustrations for articles, slides, and documentation using Google's Gemini 3.1 Flash Image model.
 
 Give it a concept, pick a style, get a publication-ready image.
