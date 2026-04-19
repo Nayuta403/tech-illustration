@@ -17,22 +17,21 @@
 
 ## 安装
 
-### 作为 Claude Skill
+### Claude Code 里——一句话搞定
 
-把整个目录放到 Claude skills 目录：
+直接跟 Claude 说：
 
-```bash
-# Claude Code
-git clone https://github.com/Nayuta403/tech-illustration.git ~/.claude/skills/tech-illustration
+```
+帮我安装一下 https://github.com/Nayuta403/tech-illustration 这个 skill
 ```
 
-Claude 会通过 `SKILL.md` 自动识别。对话中这样说：
+Claude Code 会自己 clone 到 `~/.claude/skills/tech-illustration`，通过 `SKILL.md` 自动识别。之后想用就直接说：
 
 > 用 blueprint 风格画一张 OAuth 流程的技术插图。
 
-### 独立使用（不依赖 Claude）
+### 手动安装 / 独立 CLI
 
-脚本本身就是一个独立的 Python CLI：
+如果想自己动手，或者脱离 Claude 单独用这个脚本：
 
 ```bash
 git clone https://github.com/Nayuta403/tech-illustration.git

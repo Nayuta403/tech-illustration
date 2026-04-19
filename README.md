@@ -17,22 +17,20 @@ Give it a concept, pick a style, get a publication-ready image.
 
 ## Install
 
-### As a Claude skill
+### In Claude Code — just ask
 
-Drop the folder into your skills directory:
-
-```bash
-# For Claude Code
-git clone https://github.com/Nayuta403/tech-illustration.git ~/.claude/skills/tech-illustration
+```
+Please install the tech-illustration skill from
+https://github.com/Nayuta403/tech-illustration
 ```
 
-Claude will auto-discover it via `SKILL.md`. Ask something like:
+Claude Code will clone it into `~/.claude/skills/tech-illustration` and pick it up via `SKILL.md`. Then use it whenever you want:
 
 > Generate a blueprint-style illustration of our OAuth flow.
 
-### Standalone (no Claude)
+### Manual (or standalone CLI)
 
-The script works on its own — it's just a Python CLI.
+If you'd rather do it yourself, or use the script without Claude:
 
 ```bash
 git clone https://github.com/Nayuta403/tech-illustration.git
