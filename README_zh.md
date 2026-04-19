@@ -53,7 +53,31 @@ uv run scripts/gen_illustration.py \
 
 脚本顶部用 inline 方式声明了依赖（`google-genai`、`pillow`），`uv run` 会自动处理环境。
 
-## 命令行参数
+## 使用方式
+
+### 通过 agent 使用（推荐）
+
+用自然语言说清楚你要什么，agent 会自己去调脚本。几个例子：
+
+```
+画一张 blueprint 风格的技术插图，主题是 OAuth 2.0 授权码流程，
+保存为 oauth.png。
+```
+
+```
+用 dynamic 风格画一张 Kubernetes 部署图：包含 Ingress、Service、Pod
+三层。中文标注，输出 k8s.png。
+```
+
+```
+帮我做一张 bold 风格的文章封面，主题是 AI Agent 的进化三阶段：
+聊天机器人 2022、助手 2024、自主智能体 2026，对角线构图，中文，
+保存为 cover.png。
+```
+
+如果出图看起来空洞或通用，多半是你描述得太短——读一下下面的**如何写 topic**，然后让 agent 用更丰富的 prompt 重试。
+
+### 直接用 CLI
 
 ```
 uv run scripts/gen_illustration.py \
@@ -64,7 +88,7 @@ uv run scripts/gen_illustration.py \
   [--api-key KEY]                                 # 覆盖 GEMINI_API_KEY
 ```
 
-## 如何写 topic
+### 如何写 topic
 
 出图质量的天花板由你 topic 的信息密度决定。像 *"微服务架构"* 这样笼统的 prompt 只会得到一张空洞的通用图。
 

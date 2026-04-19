@@ -54,7 +54,31 @@ uv run scripts/gen_illustration.py \
 
 The Python dependencies (`google-genai`, `pillow`) are declared inline in the script, so `uv run` handles the environment automatically.
 
-## CLI
+## Usage
+
+### Via an agent (recommended)
+
+Just describe what you want in natural language — the agent will call the script for you. A few examples:
+
+```
+Draw a blueprint-style illustration of our OAuth 2.0 authorization-code
+flow and save it as oauth.png.
+```
+
+```
+Generate a dynamic tech illustration of a Kubernetes deployment with
+Ingress, Services, and Pods. Output: k8s.png. Use Chinese labels.
+```
+
+```
+Make a bold editorial cover image for my article about AI agents —
+three evolution stages (ChatBot 2022, Assistant 2024, Autonomous Agent
+2026), diagonal layout, English labels. Save as cover.png.
+```
+
+If the output looks sparse or generic, your description was probably too short — read **Writing good topics** below, then ask the agent to retry with a richer prompt.
+
+### Direct CLI
 
 ```
 uv run scripts/gen_illustration.py \
@@ -65,9 +89,9 @@ uv run scripts/gen_illustration.py \
   [--api-key KEY]                                 # overrides GEMINI_API_KEY
 ```
 
-## Writing good topics
+### Writing good topics
 
-The quality of the output is bounded by the information density of your topic. A short prompt like *"Microservices architecture"* will give you a generic, empty-feeling image.
+Output quality is bounded by the information density of your topic. A short prompt like *"Microservices architecture"* will give you a generic, empty-feeling image.
 
 Instead, describe:
 
