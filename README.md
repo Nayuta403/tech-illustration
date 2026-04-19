@@ -2,9 +2,9 @@
 
 [English](README.md) · [中文](README_zh.md)
 
-> A Claude [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills) that generates multi-style technical illustrations for articles, slides, and documentation using Google's Gemini 3.1 Flash Image model.
+> A multi-style technical illustration generator. Ships as an [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills) (works with Claude Code, Cursor, or any agent that reads `SKILL.md`) and also as a standalone Python CLI.
 
-Give it a concept, pick a style, get a publication-ready image.
+Give it a concept, pick a style, get a publication-ready image. Currently powered by Google's Gemini 3.1 Flash Image — chosen because it produces the best results for technical diagrams today.
 
 ## Styles
 
@@ -17,20 +17,22 @@ Give it a concept, pick a style, get a publication-ready image.
 
 ## Install
 
-### In Claude Code — just ask
+### In any agent — just ask
+
+Most agents that support skills can install from a URL. For example in Claude Code:
 
 ```
 Please install the tech-illustration skill from
 https://github.com/Nayuta403/tech-illustration
 ```
 
-Claude Code will clone it into `~/.claude/skills/tech-illustration` and pick it up via `SKILL.md`. Then use it whenever you want:
+The agent will clone it into its skills directory (e.g. `~/.claude/skills/tech-illustration` for Claude Code) and pick it up via `SKILL.md`. Then use it whenever you want:
 
 > Generate a blueprint-style illustration of our OAuth flow.
 
 ### Manual (or standalone CLI)
 
-If you'd rather do it yourself, or use the script without Claude:
+If you'd rather do it yourself, or use the script without any agent:
 
 ```bash
 git clone https://github.com/Nayuta403/tech-illustration.git
@@ -78,7 +80,11 @@ See `SKILL.md` for a detailed before/after example.
 
 ## Model
 
-Uses `gemini-3.1-flash-image-preview`. Since this is a preview model, Google may rename or deprecate it over time — edit the model string in `scripts/gen_illustration.py` if needed.
+Currently pinned to `gemini-3.1-flash-image-preview`. In our testing this model gives the best results for technical diagrams — clean typography, accurate layout, correct icons — so we standardise on it rather than shipping a multi-provider abstraction.
+
+The model name is a single constant in `scripts/gen_illustration.py`. If you want to try a different image model (Imagen, another provider, or a newer Gemini), swap the model string and adapt the SDK call — but cross-model compatibility isn't maintained here, you'll own that fork.
+
+Since the current model is a preview SKU, Google may rename or deprecate it — update the model string when that happens.
 
 ## Security
 

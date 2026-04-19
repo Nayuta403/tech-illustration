@@ -2,9 +2,9 @@
 
 [English](README.md) · [中文](README_zh.md)
 
-> 一个 Claude [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills)，基于 Google Gemini 3.1 Flash Image 模型，为文章、幻灯片、技术文档生成多风格的技术插图。
+> 多风格技术插图生成器。以 [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills) 形式发布（支持 Claude Code、Cursor 以及任何能读 `SKILL.md` 的 agent），同时也可作为独立的 Python CLI 使用。
 
-给一个概念，选一种风格，得到一张出版级别的图。
+给一个概念，选一种风格，得到一张出版级别的图。当前使用 Google Gemini 3.1 Flash Image——选它是因为在技术图表场景下效果最好。
 
 ## 风格
 
@@ -17,21 +17,21 @@
 
 ## 安装
 
-### Claude Code 里——一句话搞定
+### 任意 agent 里——一句话搞定
 
-直接跟 Claude 说：
+大多数支持 skill 的 agent 都能从 URL 直接安装。以 Claude Code 为例：
 
 ```
 帮我安装一下 https://github.com/Nayuta403/tech-illustration 这个 skill
 ```
 
-Claude Code 会自己 clone 到 `~/.claude/skills/tech-illustration`，通过 `SKILL.md` 自动识别。之后想用就直接说：
+Agent 会自己 clone 到对应的 skills 目录（Claude Code 是 `~/.claude/skills/tech-illustration`），通过 `SKILL.md` 自动识别。之后想用就直接说：
 
 > 用 blueprint 风格画一张 OAuth 流程的技术插图。
 
 ### 手动安装 / 独立 CLI
 
-如果想自己动手，或者脱离 Claude 单独用这个脚本：
+如果想自己动手，或者脱离 agent 单独用这个脚本：
 
 ```bash
 git clone https://github.com/Nayuta403/tech-illustration.git
@@ -79,7 +79,11 @@ uv run scripts/gen_illustration.py \
 
 ## 模型
 
-使用 `gemini-3.1-flash-image-preview`。由于这是预览模型，Google 可能随时改名或下线——需要时在 `scripts/gen_illustration.py` 中修改模型名字符串即可。
+目前固定使用 `gemini-3.1-flash-image-preview`。在我们的测试里，这个模型在技术图表场景（排版干净、布局准确、图标正确）下效果最好，所以我们锁死它，不做多 provider 的抽象层。
+
+模型名就是 `scripts/gen_illustration.py` 里的一个常量。想换别的图像模型（Imagen、其他 provider、或者更新的 Gemini），把字符串换掉并适配 SDK 调用即可——但跨模型兼容性我们不维护，换了以后这个分支就是你自己的了。
+
+由于当前模型是 preview 版本，Google 可能随时改名或下线——到时更新这个字符串就行。
 
 ## 安全
 
